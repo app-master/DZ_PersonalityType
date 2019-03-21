@@ -49,6 +49,11 @@ class QuestionViewController: UIViewController {
         multipleStackView.isHidden = true
         rangeStackView.isHidden = true
         
+        if (questionIndex >= questions.count) {
+            performSegue(withIdentifier: "ShowResultID", sender: nil)
+            return
+        }
+        
         let currentQuestion = questions[questionIndex]
         
         navigationItem.title = "Вопрос #\(questionIndex + 1) из \(questions.count)"
@@ -180,7 +185,8 @@ class QuestionViewController: UIViewController {
             height += step
         }
         
-        performSegue(withIdentifier: "ShowResultID", sender: nil)
+        questionIndex += 1
+        updateUI()
         
     }
     
