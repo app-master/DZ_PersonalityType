@@ -10,21 +10,33 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var selectedAnswers : [Answer]?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.hidesBackButton = true
+        
+        configure()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: --Methods
+    
+    func configure() {
+        guard let selectedAnswers = selectedAnswers else { return }
+        
+        guard let yourType = ResultManager.calculateResult(for: selectedAnswers) else {
+            titleLabel.text = "Что то пошло не так :("
+            descriptionLabel.text = "Попробуйте еще раз"
+            return
+        }
+        
+        titleLabel.text = "Вы — \(yourType.rawValue)!"
+        descriptionLabel.text = yourType.description
     }
-    */
 
 }

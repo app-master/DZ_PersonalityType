@@ -17,16 +17,20 @@ class QuestionViewController: UIViewController {
     
     @IBOutlet weak var multipleStackView: UIStackView!
     @IBOutlet var multipleCollectionLabels: [UILabel]!
+    @IBOutlet var multipleCollectionSwitches: [UISwitch]!
+    
     
     @IBOutlet weak var rangeStackView: UIStackView!
     @IBOutlet var rangeCollectionLabels: [UILabel]!
+    @IBOutlet weak var rangeSlider: UISlider!
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionProgressView: UIProgressView!
     
     
     let questions = Question.loadData()
-    let questionIndex = 0
+    var questionIndex = 0
+    var selectedAnswers = [Answer]()
     
     // MARK: LifeCycle
     
@@ -112,5 +116,83 @@ class QuestionViewController: UIViewController {
         
         rangeStackView.isHidden = false
     }
+    
+    // MARK: --Actions
+    
+    @IBAction func singleTypeButtonPressed(_ sender: UIButton) {
+       
+        guard let index = singleCollectionButtons.index(of: sender) else { return }
+        
+       let currentQuestion = questions[questionIndex]
+       let answers = currentQuestion.answers
+       let currentAnswer = answers[index]
+        
+       selectedAnswers.append(currentAnswer)
+       questionIndex += 1
+       updateUI()
+        
+    }
+    
+    @IBAction func multipleTypeAnswerPressed(_ sender: UIButton) {
+        
+        let currentQuestion = questions[questionIndex]
+        let answers = currentQuestion.answers
+        
+        var choosedAnswers = [Answer]()
+        
+        for (index, value) in multipleCollectionSwitches.enumerated() {
+            if !value.isOn {
+                continue
+            }
+            
+            let currentAnswer = answers[index]
+            choosedAnswers.append(currentAnswer)
+            
+        }
+        
+        if choosedAnswers.count == 0 {
+            return
+        }
+        
+        selectedAnswers += choosedAnswers
+        
+        questionIndex += 1
+        updateUI()
+        
+    }
+    
+    @IBAction func rangeTypeAnswerPressed(_ sender: UIButton) {
+        
+        let currentQuestion = questions[questionIndex]
+        let answers = currentQuestion.answers
+        
+        let step = Float(rangeSlider.maximumValue) / Float(answers.count)
+        
+        var less = Float(0)
+        var height = step
+        
+        for i in 0..<answers.count {
+            if rangeSlider.value >= less && rangeSlider.value <= height {
+                selectedAnswers.append(answers[i])
+                break
+            }
+            less += step
+            height += step
+        }
+        
+        performSegue(withIdentifier: "ShowResultID", sender: nil)
+        
+    }
+    
+    // MARK: --Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let resultVC = segue.destination as? ResultViewController else { return }
+        
+        resultVC.selectedAnswers = selectedAnswers
+        
+    }
+    
     
 }

@@ -16,6 +16,7 @@
 		CE4B7C9C2242BC340039E650 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B7C9B2242BC340039E650 /* ResultViewController.swift */; };
 		CE4B7C9F2242BC6C0039E650 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B7C9E2242BC6C0039E650 /* Question.swift */; };
 		CE4B7CA12242BC7B0039E650 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B7CA02242BC7B0039E650 /* Answer.swift */; };
+		CEE112FA2243B4960065A3B9 /* ResultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE112F92243B4960065A3B9 /* ResultManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CE4B7C9B2242BC340039E650 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		CE4B7C9E2242BC6C0039E650 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		CE4B7CA02242BC7B0039E650 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		CEE112F92243B4960065A3B9 /* ResultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4B7C8722423DFC0039E650 /* AppDelegate.swift */,
+				CEE112FB2243DF0A0065A3B9 /* Managers */,
 				CE4B7CA22242BC990039E650 /* Models */,
 				CE4B7C9D2242BC3E0039E650 /* ViewControllers */,
 				CE4B7C8B22423DFC0039E650 /* Main.storyboard */,
@@ -90,6 +93,14 @@
 				CE4B7CA02242BC7B0039E650 /* Answer.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CEE112FB2243DF0A0065A3B9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CEE112F92243B4960065A3B9 /* ResultManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 				CE4B7C8A22423DFC0039E650 /* StartViewController.swift in Sources */,
 				CE4B7C8822423DFC0039E650 /* AppDelegate.swift in Sources */,
 				CE4B7CA12242BC7B0039E650 /* Answer.swift in Sources */,
+				CEE112FA2243B4960065A3B9 /* ResultManager.swift in Sources */,
 				CE4B7C9A2242BC0F0039E650 /* QuestionViewController.swift in Sources */,
 				CE4B7C9C2242BC340039E650 /* ResultViewController.swift in Sources */,
 			);
